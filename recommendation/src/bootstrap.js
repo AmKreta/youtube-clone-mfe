@@ -7,7 +7,7 @@ export function mount(el) {
     root.render(<App />);
 }
 
-if (process.env.NODE_ENV === 'development') {
-    const rootElement = document.getElementById('SearchRoot');
+if(process.env.NODE_ENV==='development'){
+    const rootElement = document.getElementById('recommendationRoot');
     rootElement && mount(rootElement);
 }

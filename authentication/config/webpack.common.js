@@ -22,8 +22,8 @@ module.exports = {
       name: 'authentication',
       filename: 'remoteAuth.js',
       exposes: {
-        './AuthIndex': './src/index'
-      }
+        './AuthIndex': './src/bootstrap'
+      },
     })
   ],
   module: {
@@ -48,5 +48,8 @@ module.exports = {
         use: ['file-loader'],
       }
     ]
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
   }
 }

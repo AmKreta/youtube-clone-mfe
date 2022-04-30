@@ -2,6 +2,12 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './app';
 
-const rootElement = document.getElementById('containerRoot');
-const root = createRoot(rootElement);
-root.render(<App />);
+export function mount(el) {
+    const root = createRoot(el);
+    root.render(<App />);
+}
+
+if (process.env.NODE_ENV === 'development') {
+    const rootElement = document.getElementById('playerRoot');
+    rootElement && mount(rootElement);
+}

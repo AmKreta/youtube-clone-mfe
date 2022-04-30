@@ -16,7 +16,14 @@ const devConfig = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'public', 'index.html')
-        })
+        }),
+        new ModuleFederationPlugin({
+            name: 'authentication',
+            filename: 'remoteAuth.js',
+            exposes: {
+              './AuthIndex': './src/bootstrap'
+            },
+          })
     ],
 }
 

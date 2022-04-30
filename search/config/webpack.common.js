@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
 module.exports = {
   entry: path.resolve(__dirname, '..', 'src', 'index.js'),
@@ -16,6 +17,13 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, '..', 'public', 'index.html')
+    }),
+    new ModuleFederationPlugin({
+      name: 'search',
+      filename: 'remoteSearch.js',
+      exposes: {
+        './searchIndex': './src/bootstrap'
+      }
     })
   ],
   module: {
@@ -40,5 +48,8 @@ module.exports = {
         use: ['file-loader'],
       }
     ]
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
   }
 }

@@ -6,7 +6,7 @@ const Auth=function(){
     const authContainerRef=useRef(null);
 
     useLayoutEffect(function(){
-        mount(authContainerRef.current);
+        mount && mount(authContainerRef.current);
     },[]);
 
     return (

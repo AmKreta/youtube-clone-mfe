@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ModuleFederationPlugin=require('webpack/lib/container/ModuleFederationPlugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
 module.exports = {
   entry: path.resolve(__dirname, '..', 'src', 'index.js'),
@@ -19,10 +19,14 @@ module.exports = {
       template: path.join(__dirname, '..', 'public', 'index.html')
     }),
     new ModuleFederationPlugin({
-      name:'container',
-      remotes:{
-        authentication:'authentication@http://localhost:3001/remoteAuth.js'
-      }
+      name: 'container',
+      remotes: {
+        authentication: 'authentication@http://localhost:3001/remoteAuth.js',
+        comments: 'comments@http://localhost:3002/remoteComments.js',
+        player: 'player@http://localhost:3003/remotePlayer.js',
+        recommendation: 'recommendation@http://localhost:3004/remoteRecommendation.js',
+        search: 'search@http://localhost:3005/remoteSearch.js'
+      },
     })
   ],
   module: {
@@ -47,5 +51,8 @@ module.exports = {
         use: ['file-loader'],
       }
     ]
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
   }
 }
